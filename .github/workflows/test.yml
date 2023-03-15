@@ -16,7 +16,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: ./.github/actions/aws-oidc
         with:
-          role-to-assume: arn:aws:iam::727849506101:user/docker_react_system
+          role-to-assume: arn:aws:iam::727849506101:role/aws-elasticbeanstalk-ec2-role
           aws-region: eu-west-1
       - name: Get secret
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
