@@ -40,6 +40,6 @@ jobs:
           environment_name: "Dockerreact-env-1"
           application_name: "docker_react"
           region: "eu-west-1"
-          aws_access_key: $ACCESS_KEY
-          aws_secret_key: $SECRET_ACCESS_KEY
+          aws_access_key: ${{ env.ACCESS_KEY }}
+          aws_secret_key: ${{ env.SECRET_ACCESS_KEY }}
 
