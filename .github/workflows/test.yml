@@ -4,10 +4,14 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::727849506101:user/docker_react_system
+          aws-region: eu-west-1
       - name: Get secret
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
-          region: eu-west-1
           secret-ids:
             docker_react_secret
           parse-json-secrets: true
