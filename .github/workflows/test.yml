@@ -4,6 +4,12 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - name: Get secret
+        uses: aws-actions/aws-secretsmanager-get-secrets@v1
+        with:
+          secret-ids:
+            docker_react
+          parse-json-secrets: true
       - name: Check out code
         uses: actions/checkout@v3
       - name: Build docker images
