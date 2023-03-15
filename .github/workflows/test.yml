@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: ./.github/actions/aws-oidc
         with:
           role-to-assume: arn:aws:iam::727849506101:user/docker_react_system
           aws-region: eu-west-1
