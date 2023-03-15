@@ -7,9 +7,8 @@ jobs:
       - name: Get secret
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
-          aws-region: eu-west-1
           secret-ids:
-            docker_react
+            arn:aws:secretsmanager:eu-west-1:727849506101:secret:docker_react_secret-44tVXX
           parse-json-secrets: true
       - name: Check out code
         uses: actions/checkout@v3
