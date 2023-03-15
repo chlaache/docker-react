@@ -1,9 +1,18 @@
 on: push
+
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   build:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      - name: Checkout code from repo
+        uses: actions/checkout@v2
       - name: Configure AWS Credentials
         uses: ./.github/actions/aws-oidc
         with:
