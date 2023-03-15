@@ -9,11 +9,7 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
-      - name: Checkout code from repo
-        uses: actions/checkout@v2
-      - name: Configure AWS Credentials 
+      - name: Configure AWS Credentials
         uses: ./.github/actions/aws-oidc
         with:
           role-to-assume: arn:aws:iam::727849506101:role/github-actions-role
@@ -24,8 +20,6 @@ jobs:
           secret-ids:
             docker_react_secret
           parse-json-secrets: true
-      - name: Check out code
-        uses: actions/checkout@v3
       - name: Build docker images
         run: docker build -t chlaache/docker-react -f Dockerfile.dev .
       - name: Run tests
