@@ -9,6 +9,8 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code from repo
+        uses: actions/checkout@v2
       - name: Configure AWS Credentials
         uses: ./.github/actions/aws-oidc
         with:
