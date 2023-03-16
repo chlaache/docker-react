@@ -1,8 +1,4 @@
-on:
-  push:
-    branches:
-      - master
-    
+   
 permissions:
   id-token: write
   contents: write
@@ -11,6 +7,10 @@ jobs:
   build:
     needs: [test]
     name: build
+    on:
+      push:
+        branches:
+          - master
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code from repo
