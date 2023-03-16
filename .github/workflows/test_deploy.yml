@@ -34,11 +34,11 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v21
         with:
           existing_bucket_name: "elasticbeanstalk-eu-west-1-727849506101"
-          environment_name: "Dockerreact-env-1"
+          environment_name: "Dockerreact-env"
           application_name: "docker_react"
           region: "eu-west-1"
           aws_access_key: ${{ secrets.ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
-          version_label: ${{ github.sha }}
+          version_label: 4
           deployment_package: deploy.zip
 
