@@ -1,4 +1,4 @@
-on: pull-request
+on: pull_request
 
 permissions:
   id-token: write
@@ -39,6 +39,6 @@ jobs:
           region: "eu-west-1"
           aws_access_key: ${{ secrets.ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
-          version_label: 4
+          version_label: ${{ github.sha }}
           deployment_package: deploy.zip
 
