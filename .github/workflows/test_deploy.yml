@@ -5,34 +5,23 @@ permissions:
   contents: write
 
 jobs:
-#  test:
-#    name: test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Check out code
-#        uses: actions/checkout@v3
-#      - name: Build docker images
-#        run: docker build -t chlaache/docker-react -f Dockerfile.dev .
-#      - name: Run tests
-#        run: docker run -e CI=true chlaache/docker-react npm run test    
+ test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Build docker images
+        run: docker build -t chlaache/docker-react -f Dockerfile.dev .
+      - name: Run tests
+        run: docker run -e CI=true chlaache/docker-react npm run test    
   build:
-#    needs: [test]
+    needs: [test]
     name: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code from repo
         uses: actions/checkout@v2
-      # - name: Configure AWS Credentials
-      #   uses: ./.github/actions/aws-oidc
-      #   with:
-      #     role-to-assume: arn:aws:iam::727849506101:role/github-actions-role
-      #     aws-region: eu-west-1
-      # - name: Get secret
-      #   uses: aws-actions/aws-secretsmanager-get-secrets@v1
-      #   with:
-      #     secret-ids:
-      #       docker_react_secret
-      #     parse-json-secrets: true
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
