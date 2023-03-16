@@ -22,24 +22,31 @@ jobs:
     steps:
       - name: Checkout code from repo
         uses: actions/checkout@v2
+      # - name: Configure AWS Credentials
+      #   uses: ./.github/actions/aws-oidc
+      #   with:
+      #     role-to-assume: arn:aws:iam::727849506101:role/github-actions-role
+      #     aws-region: eu-west-1
+      # - name: Get secret
+      #   uses: aws-actions/aws-secretsmanager-get-secrets@v1
+      #   with:
+      #     secret-ids:
+      #       docker_react_secret
+      #     parse-json-secrets: true
       - name: Configure AWS Credentials
-        uses: ./.github/actions/aws-oidc
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::727849506101:role/github-actions-role
-          aws-region: eu-west-1
-      - name: Get secret
-        uses: aws-actions/aws-secretsmanager-get-secrets@v1
-        with:
-          secret-ids:
-            docker_react_secret
-          parse-json-secrets: true
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: "eu-west-1"
       - name: Deploy
+        env: 
         uses: einaregilsson/beanstalk-deploy@v21
         with:
           existing_bucket_name: "elasticbeanstalk-eu-west-1-727849506101"
           environment_name: "Dockerreact-env-1"
           application_name: "docker_react"
           region: "eu-west-1"
-          aws_access_key: ${{ env.DOCKER_REACT_SECRET_ACCESS_KEY }}
-          aws_secret_key: ${{ env.DOCKER_REACT_SECRET_SECRET_ACCESS_KEY }}
+          aws_access_key: ${{ secrets.ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
 
