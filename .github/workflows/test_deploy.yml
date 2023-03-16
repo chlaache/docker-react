@@ -48,4 +48,5 @@ jobs:
           region: "eu-west-1"
           aws_access_key: ${{ secrets.ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
+          version_label: 1
 
