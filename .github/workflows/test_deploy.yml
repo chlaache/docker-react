@@ -1,11 +1,11 @@
-on: pull_request
-
 permissions:
   id-token: write
   contents: write
 
 jobs:
   test:
+    on: pull_request
+      types: [opened, reopened]
     name: test
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +17,9 @@ jobs:
         run: docker run -e CI=true chlaache/docker-react npm run test    
   build:
     needs: [test]
+    push:
+      branches:
+        - master
     name: build
     runs-on: ubuntu-latest
     steps:
