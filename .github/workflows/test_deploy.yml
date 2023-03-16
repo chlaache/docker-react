@@ -40,7 +40,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: "eu-west-1"
       - name: Deploy
-        env: 
         uses: einaregilsson/beanstalk-deploy@v21
         with:
           existing_bucket_name: "elasticbeanstalk-eu-west-1-727849506101"
